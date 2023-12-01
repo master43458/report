@@ -1,0 +1,53 @@
+﻿@{
+    ViewData["Title"] = "Home Page";
+}
+
+<form method="post" enctype="multipart/form-data" asp-controller="Home" asp-action="ImportTxt">
+    <input type="file" name="file" />
+    <br><br>
+    <button type="submit">匯入 TXT</button>
+</form>
+
+@if (ViewBag.Records != null && ViewBag.Records.Count > 0)
+{
+    <thead>
+        <tr>
+            <!-- 在這裡顯示標題 -->
+            <th>列1</th>
+            <th>列2</th>
+            <!-- ... -->
+        </tr>
+    </thead>
+    <table class="table-with-borders">
+        <tbody>
+            @foreach (var record in ViewBag.Records)
+            {
+                <tr>
+                    <!-- 在這裡顯示資料 -->
+                    <td style="text-align: left;">@record.Number</td>
+                    <td style="text-align: left;">@record.Id</td>
+                    <td style="text-align: center;">@record.Ldate</td>
+                    <td style="text-align: center;">@record.Edate</td>
+                    <td style="text-align: left;">@record.Vaccount</td>
+                    <td style="text-align: right;">@record.Totalamount</td>
+                    <td style="text-align: right;">@record.Totalbalance</td>
+                    <td style="text-align: right;">@record.Yesbalance</td>
+                    <td style="text-align: right;">@record.Nobalance</td>
+                    <!-- ... -->
+                </tr>
+            }
+        </tbody>
+    </table>
+}
+<style>
+    /* 在此處添加 CSS 以設定表格的格線樣式 */
+    .table-with-borders {
+        border-collapse: collapse;
+        width: 100%;
+    }
+
+        .table-with-borders th, .table-with-borders td {
+            border: 1px solid #dddddd;
+            padding: 8px;
+        }
+</style>
